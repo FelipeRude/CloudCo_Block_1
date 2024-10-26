@@ -107,9 +107,10 @@ app.get('/MeinungenAnderer', (req, res) => {
         </div>
       </div>
     </nav>
-
+      <div class="container d-flex justify-content-center align-items-center flex-column m-5 text-center">
         <h1>Alle gespeicherten Kommentare</h1>
         <div class="container mt-4">${commentsHTML}</div>
+      </div>
       </body>
     </html>
   `);
