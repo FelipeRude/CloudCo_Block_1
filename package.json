@@ -10,12 +10,7 @@
   "description": "",
   "dependencies": {
     "express": "^4.21.1",
-<<<<<<< Updated upstream
-    "nodemon": "^3.1.7"
-=======
-    "materialize-css": "^1.0.0-rc.2",
     "nodemon": "^3.1.7",
     "tailwind": "^4.0.0"
->>>>>>> Stashed changes
   }
 }
