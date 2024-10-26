@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>askjgds</h1>
-  </body>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Kommentar hinzufügen</title>
+</head>
+<body>
+  <h1>Hinterlassen Sie einen Kommentar</h1>
+  
+  <!-- Formular zur Eingabe von Name und Kommentar -->
+  <form id="commentForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    
+    <label for="comment">Kommentar:</label>
+    <textarea id="comment" name="comment" required></textarea>
+    
+    <button type="submit">Kommentar senden</button>
+  </form>
+
+  <p id="responseMessage"></p>
+
+  <script>
+    // JavaScript für das Absenden des Formulars
+    document.getElementById('commentForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const comment = document.getElementById('comment').value;
+
+      // Senden Sie die Daten an den Server
+      const response = await fetch('/submit-comment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, comment })
+      });
+
+      // Antwort des Servers anzeigen
+      const result = await response.json();
+      document.getElementById('responseMessage').innerText = result.message;
+      
+      // Formular zurücksetzen
+      document.getElementById('commentForm').reset();
+    });
+  </script>
+</body>
 </html>
