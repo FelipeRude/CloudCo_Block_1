@@ -49,27 +49,28 @@
     <!-- Formular zur Eingabe von Name und Kommentar -->
     <form id="commentForm">
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Email address</label
-        >
+        <label for="name" class="form-label">Ihr Name</label>
         <input
-          type="email"
           class="form-control"
-          id="exampleFormControlInput1"
-          placeholder="name@example.com"
+          type="text"
+          id="name"
+          name="name"
+          required
         />
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label"
+        <label for="comment" class="form-label" id="comment"
           >Ihr Kommentar</label
         >
         <textarea
           class="form-control"
-          id="exampleFormControlTextarea1"
+          id="comment"
+          name="comment"
           rows="3"
+          required
         ></textarea>
       </div>
-      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="submit" class="btn btn-primary" id="submit">Submit</button>
     </form>
 
     <p id="responseMessage"></p>
@@ -82,7 +83,9 @@
           event.preventDefault();
 
           const name = document.getElementById("name").value;
+
           const comment = document.getElementById("comment").value;
+          console.log(name, comment);
 
           // Senden Sie die Daten an den Server
           const response = await fetch("/submit-comment", {
