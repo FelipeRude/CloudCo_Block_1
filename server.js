@@ -45,12 +45,6 @@ app.post('/submit-comment', (req, res) => {
   }
 });
 
-// GET-Endpunkt, um alle Kommentare zurückzugeben
-app.get('/comments', (req, res) => {
-  const comments = loadComments();
-  res.json(comments);
-});
-
 // Routen für die verschiedenen Seiten
 app.get('/index', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'index.html'));
