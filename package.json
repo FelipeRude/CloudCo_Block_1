@@ -1,7 +1,7 @@
 {
   "name": "cloudcomputing",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,7 @@
   "description": "",
   "dependencies": {
     "express": "^4.21.1",
+    "materialize-css": "^1.0.0-rc.2",
     "nodemon": "^3.1.7"
   }
 }
