@@ -77,7 +77,7 @@ app.get('/MeinungenAnderer', (req, res) => {
       <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Studibars Weingarten</a>
+        <a class="navbar-brand" href="/index">Studibars Weingarten</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -92,9 +92,6 @@ app.get('/MeinungenAnderer', (req, res) => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="/index">Startseite</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="/DeineMeinung">Deine Meinung</a>
             </li>
             <li class="nav-item">
@@ -107,9 +104,12 @@ app.get('/MeinungenAnderer', (req, res) => {
         </div>
       </div>
     </nav>
-
+      <div class="container d-flex justify-content-center align-items-center flex-column m-5 text-center">
         <h1>Alle gespeicherten Kommentare</h1>
         <div class="container mt-4">${commentsHTML}</div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
       </body>
     </html>
   `);
