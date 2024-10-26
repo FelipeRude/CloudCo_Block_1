@@ -1,15 +1,17 @@
-const http = require("http");
+const express = require('express');
+const path = require('path');  // Für den einfachen Dateipfadzugriff
+const app = express();
+const PORT = 2000;
 
-//Webserver
-const hostname = "127.0.0.1";
-const port = 2000;
+// "static" als statisches Verzeichnis festlegen
+app.use(express.static('static'));
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Hello, World!\n");
+// Route für die Startseite festlegen
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'static', 'index.html'));
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+// Server starten
+app.listen(PORT, () => {
+  console.log(`Server läuft auf http://localhost:${PORT}`);
 });
