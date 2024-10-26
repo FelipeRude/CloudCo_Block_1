@@ -44,5 +44,34 @@
           </div>
         </div>
       </nav>
+      <h1>Alle gespeicherten Kommentare</h1>
+  
+  <div id="commentsSection" class="container mt-4"></div>
+
+  <script>
+    // Funktion zum Laden und Anzeigen aller Kommentare
+    async function loadAllComments() {
+      const response = await fetch('/comments');  // Anfrage an den GET-Endpunkt
+      const comments = await response.json();
+
+      const commentsSection = document.getElementById('commentsSection');
+      commentsSection.innerHTML = '';  // Vorherige Kommentare löschen
+
+      // Jeden Kommentar als Listenelement einfügen
+      comments.forEach(comment => {
+        const commentDiv = document.createElement('div');
+        commentDiv.className = 'card mt-2';
+        commentDiv.innerHTML = `
+          <div class="card-body">
+            <h5 class="card-title">${comment.name}</h5>
+            <p class="card-text">${comment.comment}</p>
+          </div>`;
+        commentsSection.appendChild(commentDiv);
+      });
+    }
+
+    // Beim Laden der Seite alle Kommentare abrufen und anzeigen
+    window.addEventListener('DOMContentLoaded', loadAllComments);
+  </script>
 </body>
 </html>

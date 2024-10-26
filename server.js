@@ -25,7 +25,9 @@ app.post('/submit-comment', (req, res) => {
       res.status(400).json({ message: 'Name und Kommentar sind erforderlich!' });
     }
   });
-
+app.get('/comments', (req, res) => {
+    res.json(comments);
+});
 app.get('/index', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'index.html'));
 });
