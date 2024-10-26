@@ -56,33 +56,66 @@
     
     <button type="submit">Kommentar senden</button>
   </form>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kommentar hinzufügen</title>
+  </head>
+  <body>
+    <h1>Hinterlassen Sie einen Kommentar</h1>
 
-  <p id="responseMessage"></p>
+    <!-- Formular zur Eingabe von Name und Kommentar -->
+    <form id="commentForm">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Email address</label
+        >
+        <input
+          type="email"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="name@example.com"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label"
+          >Example textarea</label
+        >
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+        ></textarea>
+      </div>
+    </form>
 
-  <script>
-    // JavaScript für das Absenden des Formulars
-    document.getElementById('commentForm').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      
-      const name = document.getElementById('name').value;
-      const comment = document.getElementById('comment').value;
+    <p id="responseMessage"></p>
 
-      // Senden Sie die Daten an den Server
-      const response = await fetch('/submit-comment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, comment })
-      });
+    <script>
+      // JavaScript für das Absenden des Formulars
+      document
+        .getElementById("commentForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
 
-      // Antwort des Servers anzeigen
-      const result = await response.json();
-      document.getElementById('responseMessage').innerText = result.message;
-      
-      // Formular zurücksetzen
-      document.getElementById('commentForm').reset();
-    });
-  </script>
-</body>
+          const name = document.getElementById("name").value;
+          const comment = document.getElementById("comment").value;
+
+          // Senden Sie die Daten an den Server
+          const response = await fetch("/submit-comment", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, comment }),
+          });
+
+          // Antwort des Servers anzeigen
+          const result = await response.json();
+          document.getElementById("responseMessage").innerText = result.message;
+
+          // Formular zurücksetzen
+          document.getElementById("commentForm").reset();
+        });
+    </script>
+  </body>
 </html>
