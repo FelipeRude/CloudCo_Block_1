@@ -55,11 +55,11 @@ app.get('/comments', (req, res) => {
 app.get('/index', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'index.html'));
 });
-app.get('/page1', (req, res) => {
-  res.sendFile(path.join(__dirname, 'static', 'page1.html'));
+app.get('/DeineMeinung', (req, res) => {
+  res.sendFile(path.join(__dirname, 'static', 'DeineMeinung.html'));
 });
 
-app.get('/page2', (req, res) => {
+app.get('/MeinungenAnderer', (req, res) => {
   const comments = loadComments();
   const commentsHTML = comments
     .map(comment => `
@@ -82,16 +82,37 @@ app.get('/page2', (req, res) => {
       </head>
       <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link" href="/index">Startseite</a></li>
-              <li class="nav-item"><a class="nav-link" href="/page1">Page 1</a></li>
-              <li class="nav-item"><a class="nav-link" href="/page2">Page 2</a></li>
-              <li class="nav-item"><a class="nav-link" href="/page3">Page 3</a></li>
-            </ul>
-          </div>
-        </nav>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Studibars Weingarten</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/index">Startseite</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/DeineMeinung">Deine Meinung</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="MeinungenAnderer">Meinungen Anderer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Events">Events</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
         <h1>Alle gespeicherten Kommentare</h1>
         <div class="container mt-4">${commentsHTML}</div>
@@ -100,8 +121,8 @@ app.get('/page2', (req, res) => {
   `);
 });
 
-app.get('/page3', (req, res) => {
-  res.sendFile(path.join(__dirname, 'static', 'page3.html'));
+app.get('/Events', (req, res) => {
+  res.sendFile(path.join(__dirname, 'static', 'Events.html'));
 });
 
 // Server starten
