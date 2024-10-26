@@ -1,77 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html">Startseite</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/page1.html">Page 1</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="page2.html">Page2</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="page3.html">Page3</a>
-              </li>
-            </ul>
-          </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Startseite</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/page1.html">Page 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="page2.html">Page2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="page3.html">Page3</a>
+            </li>
+          </ul>
         </div>
-      </nav>
-      <h1>Alle gespeicherten Kommentare</h1>
-  
-  <div id="commentsSection" class="container mt-4"></div>
+      </div>
+    </nav>
+    <h1>Alle gespeicherten Kommentare</h1>
 
-  <script>
-    // Funktion zum Laden und Anzeigen aller Kommentare
-    async function loadAllComments() {
-      const response = await fetch('/comments');  // Anfrage an den GET-Endpunkt
-      const comments = await response.json();
+    <div id="commentsSection" class="container mt-4"></div>
 
-      const commentsSection = document.getElementById('commentsSection');
-      commentsSection.innerHTML = '';  // Vorherige Kommentare löschen
+    <script>
+      // Funktion zum Laden und Anzeigen aller Kommentare
+      async function loadAllComments() {
+        const response = await fetch("/comments"); // Anfrage an den GET-Endpunkt
+        const comments = await response.json();
 
-      // Jeden Kommentar als Listenelement einfügen
-      comments.forEach(comment => {
-        const commentDiv = document.createElement('div');
-        commentDiv.className = 'card mt-2';
-        commentDiv.innerHTML = `
+        const commentsSection = document.getElementById("commentsSection");
+        commentsSection.innerHTML = ""; // Vorherige Kommentare löschen
+
+        // Jeden Kommentar als Listenelement einfügen
+        comments.forEach((comment) => {
+          const commentDiv = document.createElement("div");
+          commentDiv.className = "card mt-2";
+          commentDiv.innerHTML = `
           <div class="card-body">
             <h5 class="card-title">${comment.name}</h5>
             <p class="card-text">${comment.comment}</p>
           </div>`;
-        commentsSection.appendChild(commentDiv);
-      });
-    }
+          commentsSection.appendChild(commentDiv);
+        });
+      }
 
-    // Beim Laden der Seite alle Kommentare abrufen und anzeigen
-    window.addEventListener('DOMContentLoaded', loadAllComments);
-  </script>
-</body>
+      // Beim Laden der Seite alle Kommentare abrufen und anzeigen
+      window.addEventListener("DOMContentLoaded", loadAllComments);
+    </script>
+  </body>
 </html>
