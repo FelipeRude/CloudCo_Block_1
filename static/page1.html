@@ -59,9 +59,7 @@
         />
       </div>
       <div class="mb-3">
-        <label for="comment" class="form-label" id="comment"
-          >Ihr Kommentar</label
-        >
+        <label for="comment" class="form-label">Ihr Kommentar</label>
         <textarea
           class="form-control"
           id="comment"
@@ -76,29 +74,30 @@
     <p id="responseMessage"></p>
 
     <script>
-      // JavaScript für das Absenden des Formulars
       document
         .getElementById("commentForm")
         .addEventListener("submit", async (event) => {
           event.preventDefault();
 
           const name = document.getElementById("name").value;
-
           const comment = document.getElementById("comment").value;
-          console.log(name, comment);
 
-          // Senden Sie die Daten an den Server
-          const response = await fetch("/submit-comment", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, comment }),
-          });
+          try {
+            const response = await fetch("/submit-comment", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ name, comment }),
+            });
 
-          // Antwort des Servers anzeigen
-          const result = await response.json();
-          document.getElementById("responseMessage").innerText = result.message;
+            if (!response.ok) throw new Error("Fehler beim Senden des Kommentars");
+
+            const result = await response.json();
+            document.getElementById("responseMessage").innerText = result.message;
+          } catch (error) {
+            document.getElementById("responseMessage").innerText = error.message;
+          }
 
           // Formular zurücksetzen
           document.getElementById("commentForm").reset();
